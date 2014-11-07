@@ -1,4 +1,14 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath rootProject.ext.retroLambda
+    }
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'retrolambda'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -13,7 +23,7 @@ android {
 
     defaultConfig {
         applicationId "com.tale.androidgradletemplate"
-        minSdkVersion 8
+        minSdkVersion 9
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
@@ -39,6 +49,18 @@ android {
         }
     }
 
+    // Configure for RetroLambda
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    retrolambda {
+        jdk System.getenv("JAVA8_HOME")
+        oldJdk System.getenv("JAVA7_HOME")
+        javaVersion JavaVersion.VERSION_1_7
+    }
+
 }
 
 dependencies {
@@ -49,12 +71,14 @@ dependencies {
     compile 'com.android.support:gridlayout-v7:21.0.0'
     compile 'com.android.support:recyclerview-v7:21.0.0'
 
+    // Retro Lambda
+    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:1.6.0'
     // Inject dependencies
     compile 'com.squareup.dagger:dagger:1.2.2'
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
 
     // View Inject dependencies
-    compile 'com.jakewharton:butterknife:5.1.+'
+    compile 'com.jakewharton:butterknife:6.0.+'
 
     compile 'joda-time:joda-time:2.5'
     compile 'com.github.talenguyen:PrettySharedPreferences:1.0.1'
