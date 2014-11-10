@@ -14,8 +14,8 @@ public class AppPref extends PrettySharedPreferences {
         super(sharedPreferences);
     }
 
-    public LongEditor<AppPref> userId() {
-        return getLongEditor("userId");
+    public LongEditor<AppPref> isFirstInitialized() {
+        return getLongEditor("isFirstInitialized");
     }
 
 }
