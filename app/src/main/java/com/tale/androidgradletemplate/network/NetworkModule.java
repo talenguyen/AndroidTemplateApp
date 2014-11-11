@@ -21,7 +21,8 @@ import timber.log.Timber;
  * Created by tale on 11/8/14.
  */
 @Module(
-        library = true
+        library = true,
+        complete = false
 )
 public class NetworkModule {
 

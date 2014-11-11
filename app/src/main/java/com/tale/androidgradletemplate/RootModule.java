@@ -2,6 +2,8 @@ package com.tale.androidgradletemplate;
 
 import android.app.Application;
 
+import com.tale.androidgradletemplate.managers.ManagerModule;
+import com.tale.androidgradletemplate.network.NetworkModule;
 import com.tale.androidgradletemplate.utils.Toasts;
 
 import javax.inject.Singleton;
@@ -15,15 +17,16 @@ import dagger.Provides;
 @Module(
         library = true,
         includes = {
-//                DataModule.class
+                ManagerModule.class,
+                NetworkModule.class
         },
         injects = {
                 TempleApplication.class
         })
 public final class RootModule {
-    private final TempleApplication app;
+    private final Application app;
 
-    public RootModule(TempleApplication app) {
+    public RootModule(Application app) {
         this.app = app;
     }
 

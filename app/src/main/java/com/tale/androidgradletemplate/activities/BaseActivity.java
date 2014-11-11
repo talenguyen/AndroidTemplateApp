@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 
 import com.tale.androidgradletemplate.TempleApplication;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -25,15 +26,21 @@ public class BaseActivity extends ActionBarActivity {
         injectDependencies();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        activityObjectGraph = null;
+    }
+
     protected void injectDependencies() {
         final TempleApplication application = TempleApplication.get(this);
 
-        final List<Object> modules = getModules();
+        List<Object> modules = getModules();
         if (modules == null) {
-            activityObjectGraph = application.getObjectGraph();
-        } else {
-            activityObjectGraph = application.getObjectGraph().plus(modules);
+            modules = new ArrayList<>();
         }
+        modules.add(new ActivityModule());
+        activityObjectGraph = application.getObjectGraph().plus(modules.toArray());
         activityObjectGraph.inject(this);
     }
 

@@ -2,7 +2,7 @@ package com.tale.androidgradletemplate.managers;
 
 import android.content.SharedPreferences;
 
-import com.tale.prettysharedpreferences.LongEditor;
+import com.tale.prettysharedpreferences.BooleanEditor;
 import com.tale.prettysharedpreferences.PrettySharedPreferences;
 
 /**
@@ -14,8 +14,8 @@ public class AppPref extends PrettySharedPreferences {
         super(sharedPreferences);
     }
 
-    public LongEditor<AppPref> isFirstInitialized() {
-        return getLongEditor("isFirstInitialized");
+    public BooleanEditor<AppPref> isFirstInitialized() {
+        return getBooleanEditor("isFirstInitialized");
     }
 
 }

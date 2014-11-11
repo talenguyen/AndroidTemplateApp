@@ -16,7 +16,8 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by tale on 11/8/14.
  */
 @Module(
-        library = true
+        library = true,
+        complete = false
 )
 public class ManagerModule {
 
