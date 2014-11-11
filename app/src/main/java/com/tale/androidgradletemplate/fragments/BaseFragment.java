@@ -20,10 +20,10 @@ public class BaseFragment extends Fragment {
 
     private ObjectGraph fragmentObjectGraph;
 
-
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        injectViews(view);
         injectDependencies();
         onInjected();
     }
@@ -46,12 +46,6 @@ public class BaseFragment extends Fragment {
         modules.add(new FragmentModule());
         fragmentObjectGraph = ((BaseActivity) getActivity()).getActivityObjectGraph().plus(modules.toArray());
         fragmentObjectGraph.inject(this);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        injectViews(view);
     }
 
     protected void injectViews(View view) {

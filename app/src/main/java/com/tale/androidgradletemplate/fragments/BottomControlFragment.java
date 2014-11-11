@@ -36,7 +36,7 @@ public class BottomControlFragment extends BaseFragment {
 
     @OnClick({R.id.btLeft, R.id.btRight})
     public void onButtonClick(Button button) {
-        Event.ButtonClick.publish(button.getText().toString());
+        Event.NavigationRequest.publish(button.getText().toString());
     }
 
 }

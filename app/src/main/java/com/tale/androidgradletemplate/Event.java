@@ -8,7 +8,7 @@ import rx.subjects.PublishSubject;
  * Created by TALE on 11/11/2014.
  */
 public enum Event {
-    ButtonClick(PublishSubject.create());
+    NavigationRequest(PublishSubject.create());
 
     PublishSubject<Object> publishSubject;
 
