@@ -2,9 +2,10 @@ package com.tale.androidgradletemplate.activities;
 
 import android.os.Bundle;
 
-import com.tale.androidgradletemplate.Event;
 import com.tale.androidgradletemplate.R;
-import com.tale.androidgradletemplate.fragments.BottomControlFragment;
+import com.tale.androidgradletemplate.activities.base.RxActivity;
+import com.tale.androidgradletemplate.events.RxEvent;
+import com.tale.androidgradletemplate.fragments.BottomControlWithRxFragment;
 import com.tale.androidgradletemplate.fragments.SampleFragmentBuilder;
 
 import java.util.ArrayList;
@@ -15,23 +16,31 @@ import rx.Subscription;
 /**
  * Created by TALE on 11/11/2014.
  */
-public class SampleActivity extends RxActivity {
+public class SampleWithRxActivity extends RxActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_sample);
-
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.flMainContainer, SampleFragmentBuilder.newSampleFragment("Main"))
-                    .add(R.id.flBottomControlContainer, new BottomControlFragment())
+                    .add(R.id.flBottomControlContainer, new BottomControlWithRxFragment())
                     .commit();
         }
 
-        final Subscription subscription = Event.NavigationRequest.subscribe((requestId) -> showSampleFragment(String.valueOf(requestId)));
-        takeCareSubscription(subscription);
+    }
+
+    @Override
+    protected int getContentViewId() {
+        return R.layout.activity_sample;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final Subscription subscription = RxEvent.NavigationRequest.subscribe((requestId) -> showSampleFragment(String.valueOf(requestId)));
+        takeCareSubscriptionOnPause(subscription);
     }
 
     private void showSampleFragment(String title) {

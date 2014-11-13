@@ -7,8 +7,11 @@ import dagger.Module;
  */
 @Module(
         injects = {
-                SampleActivity.class
-        }
+                SampleMainActivity.class,
+                SampleWithRxActivity.class,
+                SampleWithBusActivity.class
+        },
+        complete = false
 )
 public class ActivityModule {
 }

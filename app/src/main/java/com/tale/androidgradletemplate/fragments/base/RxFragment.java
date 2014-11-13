@@ -1,4 +1,4 @@
-package com.tale.androidgradletemplate.activities;
+package com.tale.androidgradletemplate.fragments.base;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
@@ -6,12 +6,11 @@ import rx.subscriptions.CompositeSubscription;
 /**
  * Created by TALE on 11/11/2014.
  */
-public class RxActivity extends BaseActivity {
-
+public class RxFragment extends BaseFragment {
     private CompositeSubscription compositeSubscription;
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         if (compositeSubscription != null) {
             if (!compositeSubscription.isUnsubscribed()) {

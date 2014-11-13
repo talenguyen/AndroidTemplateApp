@@ -11,6 +11,7 @@ import com.hannesdorfmann.fragmentargs.FragmentArgs;
 import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.tale.androidgradletemplate.R;
 import com.tale.androidgradletemplate.activities.ActivityModule;
+import com.tale.androidgradletemplate.fragments.base.BaseFragment;
 import com.tale.androidgradletemplate.utils.Toasts;
 
 import java.util.ArrayList;

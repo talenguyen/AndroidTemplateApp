@@ -1,11 +1,12 @@
-package com.tale.androidgradletemplate.fragments;
+package com.tale.androidgradletemplate.fragments.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.tale.androidgradletemplate.activities.BaseActivity;
+import com.tale.androidgradletemplate.activities.base.BaseActivity;
+import com.tale.androidgradletemplate.fragments.FragmentModule;
 
 import java.util.ArrayList;
 import java.util.List;

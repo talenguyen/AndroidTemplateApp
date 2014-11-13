@@ -7,7 +7,8 @@ import dagger.Module;
  */
 @Module(
         injects = {
-                BottomControlFragment.class,
+                BottomControlWithRxFragment.class,
+                BottomControlWithBusFragment.class,
                 SampleFragment.class
         },
         complete = false

@@ -1,4 +1,4 @@
-package com.tale.androidgradletemplate;
+package com.tale.androidgradletemplate.events;
 
 import rx.Subscription;
 import rx.functions.Action1;
@@ -7,13 +7,13 @@ import rx.subjects.PublishSubject;
 /**
  * Created by TALE on 11/11/2014.
  */
-public enum Event {
-    NavigationRequest(PublishSubject.create());
+public enum RxEvent {
+    NavigationRequest;
 
-    PublishSubject<Object> publishSubject;
+    private final PublishSubject<Object> publishSubject;
 
-    Event(PublishSubject<Object> publishSubject) {
-        this.publishSubject = publishSubject;
+    RxEvent() {
+        this.publishSubject = PublishSubject.create();
     }
 
     public void publish(Object obj) {

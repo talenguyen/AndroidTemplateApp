@@ -10,6 +10,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by tale on 11/6/14.
@@ -40,6 +41,12 @@ public final class RootModule {
     @Singleton
     Toasts provideToast() {
         return new Toasts(app);
+    }
+
+    @Provides
+    @Singleton
+    EventBus provideBus() {
+        return EventBus.getDefault();
     }
 
 }
