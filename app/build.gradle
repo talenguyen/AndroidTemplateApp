@@ -56,12 +56,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-//
-//    retrolambda {
-//        jdk System.getenv("JAVA8_HOME")
-//        oldJdk System.getenv("JAVA7_HOME")
-//        javaVersion JavaVersion.VERSION_1_7
-//    }
+
+    retrolambda {
+        jdk System.getenv("JAVA8_HOME")
+        oldJdk System.getenv("JAVA_HOME")
+        javaVersion JavaVersion.VERSION_1_7
+    }
 
 }
 
@@ -86,7 +86,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:6.0.+'
 
     compile 'joda-time:joda-time:2.5'
-    compile 'com.github.talenguyen:PrettySharedPreferences:1.0.1'
+    compile 'com.github.talenguyen:prettysharedpreferences:1.0.2'
 
     // Log
     compile 'com.jakewharton.timber:timber:2.2.+'
