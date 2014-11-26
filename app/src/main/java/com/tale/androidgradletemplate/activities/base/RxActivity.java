@@ -13,24 +13,25 @@ public abstract class RxActivity extends BaseActivity {
 
     @Override
     protected void onPause() {
-        super.onPause();
         if (compositeSubscriptionOnPause != null) {
             if (!compositeSubscriptionOnPause.isUnsubscribed()) {
                 compositeSubscriptionOnPause.unsubscribe();
             }
             compositeSubscriptionOnPause.clear();
         }
+        super.onPause();
+
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         if (compositeSubscriptionOnDestroy != null) {
             if (!compositeSubscriptionOnDestroy.isUnsubscribed()) {
                 compositeSubscriptionOnDestroy.unsubscribe();
             }
             compositeSubscriptionOnDestroy.clear();
         }
+        super.onDestroy();
     }
 
     protected void removeOnPauseSubscription(Subscription subscription) {
