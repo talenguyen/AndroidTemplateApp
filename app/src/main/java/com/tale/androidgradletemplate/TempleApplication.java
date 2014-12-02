@@ -3,6 +3,8 @@ package com.tale.androidgradletemplate;
 import android.app.Application;
 import android.content.Context;
 
+import com.tale.androidgradletemplate.di.RootModule;
+
 import dagger.ObjectGraph;
 import timber.log.Timber;
 

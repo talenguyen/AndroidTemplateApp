@@ -1,4 +1,4 @@
-package com.tale.androidgradletemplate.managers;
+package com.tale.androidgradletemplate.prefs;
 
 import android.content.SharedPreferences;
 
