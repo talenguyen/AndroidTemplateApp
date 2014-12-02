@@ -10,21 +10,21 @@ import de.greenrobot.event.EventBus;
 public class BaseBusRxFragment extends RxFragment {
 
     @Inject
-    EventBus bus;
+    protected EventBus bus;
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (bus != null) {
-            bus.register(this);
-        }
+    private boolean isBusEventRegistered;
+
+    protected void registerForBusEvent() {
+        bus.register(this);
+        isBusEventRegistered = true;
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (bus != null) {
+        if (isBusEventRegistered) {
             bus.unregister(this);
         }
     }
+
 }

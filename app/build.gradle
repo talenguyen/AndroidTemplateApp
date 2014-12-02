@@ -62,6 +62,11 @@ android {
         oldJdk System.getenv("JAVA_HOME")
         javaVersion JavaVersion.VERSION_1_7
     }
+    
+     // For butter-knife
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
 
 }
 
@@ -109,15 +114,16 @@ dependencies {
     // TESTING
     ///////////////////////////////////////////////////////////////
 
-    // Espresso
-    androidTestCompile('com.jakewharton.espresso:espresso:1.1-r3') {
-        // TODO workaround for http://b.android.com/65445
-        exclude group: 'com.google.guava', module: 'guava'
-    }
+//    // Espresso
+//    androidTestCompile('com.jakewharton.espresso:espresso:1.1-r3') {
+//        // TODO workaround for http://b.android.com/65445
+//        exclude group: 'com.google.guava', module: 'guava'
+//    }
     androidTestCompile('com.jakewharton.espresso:espresso-support-v4:1.1-r3') {
         // TODO workaround for http://b.android.com/65445
         exclude group: 'com.android.support', module: 'support-v4'
-        exclude group: 'com.google.guava', module: 'guava'
+//        exclude group: 'com.google.guava', module: 'guava'
+        exclude group: 'com.squareup.dagger'
     }
 }
 
