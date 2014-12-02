@@ -9,7 +9,7 @@ import timber.log.Timber;
 /**
  * Created by tale on 11/6/14.
  */
-public class TempleApplication extends Application implements Injector {
+public class TempleApplication extends Application {
     private ObjectGraph objectGraph;
 
     @Override
@@ -28,15 +28,8 @@ public class TempleApplication extends Application implements Injector {
 
     public void buildObjectGraphAndInject() {
         objectGraph = ObjectGraph.create(new Object[]{new RootModule(this)});
-        objectGraph.inject(this);
     }
 
-    @Override
-    public void inject(Object object) {
-        objectGraph.inject(object);
-    }
-
-    @Override
     public ObjectGraph getObjectGraph() {
         return objectGraph;
     }
