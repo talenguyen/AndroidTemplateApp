@@ -14,7 +14,8 @@ import dagger.Provides;
         library = true,
         includes = {
                 ManagerModule.class,
-                AndroidModule.class
+                AndroidModule.class,
+                NetworkModule.class
         })
 public final class RootModule {
     private final Application app;
@@ -24,8 +25,7 @@ public final class RootModule {
     }
 
     @Provides
-    @Singleton
-    Application provideApplication() {
+    @Singleton Application provideApplication() {
         return app;
     }
 

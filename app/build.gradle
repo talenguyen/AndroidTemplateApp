@@ -57,13 +57,13 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    retrolambda {
-        jdk System.getenv("JAVA8_HOME")
-        oldJdk System.getenv("JAVA_HOME")
-        javaVersion JavaVersion.VERSION_1_7
-    }
-    
-     // For butter-knife
+//    retrolambda {
+//        jdk System.getenv("JAVA8_HOME")
+//        oldJdk System.getenv("JAVA_HOME")
+//        javaVersion JavaVersion.VERSION_1_7
+//    }
+
+    // For butter-knife
     packagingOptions {
         exclude 'META-INF/services/javax.annotation.processing.Processor'
     }

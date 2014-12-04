@@ -1,4 +1,4 @@
-package com.tale.androidgradletemplate.network;
+package com.tale.androidgradletemplate.di;
 
 import android.app.Application;
 import android.net.Uri;
@@ -29,14 +29,12 @@ public class NetworkModule {
     static final int DISK_CACHE_SIZE = 50 * 1024 * 1024; // 50MB
 
     @Provides
-    @Singleton
-    OkHttpClient provideOkHttpClient(Application app) {
+    @Singleton OkHttpClient provideOkHttpClient(Application app) {
         return createOkHttpClient(app);
     }
 
     @Provides
-    @Singleton
-    Picasso providePicasso(Application app, OkHttpClient client) {
+    @Singleton Picasso providePicasso(Application app, OkHttpClient client) {
         return new Picasso.Builder(app).downloader(new OkHttpDownloader(client))
                 .listener(new Picasso.Listener() {
                     @Override
