@@ -30,7 +30,8 @@ import dagger.Provides;
         library = true,
         includes = {
                 ManagerModule.class,
-                AndroidModule.class
+                AndroidModule.class,
+                NetworkModule.class
         })
 public final class RootModule {
     private final Application app;
