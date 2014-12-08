@@ -35,7 +35,7 @@ allprojects {
 }
 
 ext {
-    androidPlugin = 'com.android.tools.build:gradle:0.13.2'
+    androidPlugin = 'com.android.tools.build:gradle:1.0.0-rc4'
     retroLambda = 'me.tatarka:gradle-retrolambda:2.4.1'
     // the latest version of the android-apt plugin
     androidApt = 'com.neenbedankt.gradle.plugins:android-apt:1.4'
