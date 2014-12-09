@@ -16,6 +16,8 @@
 
 package com.tale.androidgradletemplate.fragments;
 
+import com.tale.androidgradletemplate.model.net.GitHubApi;
+
 import dagger.Module;
 
 /**
@@ -23,10 +25,9 @@ import dagger.Module;
  */
 @Module(
         injects = {
-                BottomControlWithRxFragment.class,
-                BottomControlWithBusFragment.class,
-                SampleFragment.class
+                MainFragment.class
         },
+        includes = GitHubApi.class,
         complete = false
 )
 public class FragmentModule {

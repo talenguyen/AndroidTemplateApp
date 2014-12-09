@@ -79,7 +79,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:21.0.0'
 
     // Retro Lambda
-    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:1.6.0'
+//    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:1.6.0'
     // Inject dependencies
     compile 'com.squareup.dagger:dagger:1.2.2'
     apt 'com.squareup.dagger:dagger-compiler:1.2.2'

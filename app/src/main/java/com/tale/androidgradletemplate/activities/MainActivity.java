@@ -16,28 +16,29 @@
 
 package com.tale.androidgradletemplate.activities;
 
+import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
+
 import com.tale.androidgradletemplate.R;
 import com.tale.androidgradletemplate.activities.base.BaseActivity;
+import com.tale.androidgradletemplate.fragments.MainFragment;
 
-import butterknife.OnClick;
 
 /**
  * Created by TALE on 11/13/2014.
  */
-public class SampleMainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected int getContentViewId() {
         return R.layout.activity_sample_main;
     }
 
-    @OnClick(R.id.btBusSample)
-    public void openBusSample() {
-        startActivity(openActivityIntent(SampleWithBusActivity.class));
-    }
-
-    @OnClick(R.id.btRxSample)
-    public void openRxSample() {
-        startActivity(openActivityIntent(SampleWithRxActivity.class));
+    @Override public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState == null) {
+            final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.add(R.id.fragment_container, new MainFragment(), "MAIN").commit();
+        }
     }
 }

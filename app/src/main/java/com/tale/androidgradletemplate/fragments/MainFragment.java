@@ -21,43 +21,50 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
+import com.hannesdorfmann.fragmentargs.FragmentArgs;
+import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.tale.androidgradletemplate.R;
-import com.tale.androidgradletemplate.events.RxEvent;
+import com.tale.androidgradletemplate.activities.ActivityModule;
 import com.tale.androidgradletemplate.fragments.base.BaseFragment;
 import com.tale.androidgradletemplate.utils.Toasts;
 
-import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
-import butterknife.OnClick;
-import de.greenrobot.event.EventBus;
+import javax.inject.Inject;
 
 /**
  * Created by TALE on 11/11/2014.
  */
-public class BottomControlWithRxFragment extends BaseFragment {
+public class MainFragment extends BaseFragment {
 
     @Inject
     Toasts toasts;
 
-    @Inject
-    EventBus bus;
+    @Arg
+    String title;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_bottom_control, container, false);
+        return inflater.inflate(R.layout.fragment_sample, container, false);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        FragmentArgs.inject(this);
     }
 
     @Override
     protected void onInjected() {
         super.onInjected();
-        toasts.showShort("onViewCreated");
     }
 
-    @OnClick({R.id.btLeft, R.id.btRight})
-    public void onButtonClick(Button button) {
-        RxEvent.NavigationRequest.publish(button.getText().toString());
+    @Override
+    protected List<Object> getModules() {
+        final List<Object> modules = new ArrayList<>();
+        modules.add(new ActivityModule());
+        return modules;
     }
-
 }

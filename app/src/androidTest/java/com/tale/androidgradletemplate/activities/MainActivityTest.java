@@ -22,16 +22,15 @@ import com.tale.androidgradletemplate.R;
 
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
 import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
-import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withId;
 import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withText;
 
 /**
  * Created by TALE on 12/1/2014.
  */
-public class SampleMainActivityTest extends ActivityInstrumentationTestCase2<SampleMainActivity> {
+public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
-    public SampleMainActivityTest() {
-        super("com.tale.androidgradletemplate.activities", SampleMainActivity.class);
+    public MainActivityTest() {
+        super("com.tale.androidgradletemplate.activities", MainActivity.class);
     }
 
     @Override protected void setUp() throws Exception {

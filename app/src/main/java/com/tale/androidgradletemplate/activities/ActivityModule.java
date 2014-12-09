@@ -23,9 +23,7 @@ import dagger.Module;
  */
 @Module(
         injects = {
-                SampleMainActivity.class,
-                SampleWithRxActivity.class,
-                SampleWithBusActivity.class
+                MainActivity.class,
         },
         complete = false
 )
