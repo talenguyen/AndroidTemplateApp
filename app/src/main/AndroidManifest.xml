@@ -18,6 +18,8 @@
           package="com.tale.androidgradletemplate"
     >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".TempleApplication"
         android:allowBackup="true"

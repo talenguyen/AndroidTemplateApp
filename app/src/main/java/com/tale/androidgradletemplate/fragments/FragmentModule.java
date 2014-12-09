@@ -16,8 +16,6 @@
 
 package com.tale.androidgradletemplate.fragments;
 
-import com.tale.androidgradletemplate.model.net.GitHubApi;
-
 import dagger.Module;
 
 /**
@@ -27,7 +25,6 @@ import dagger.Module;
         injects = {
                 MainFragment.class
         },
-        includes = GitHubApi.class,
         complete = false
 )
 public class FragmentModule {

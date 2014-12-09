@@ -113,6 +113,13 @@ dependencies {
     ///////////////////////////////////////////////////////////////
     // TESTING
     ///////////////////////////////////////////////////////////////
+    androidTestCompile 'org.mockito:mockito-core:1.9.5'
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.1'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
+    androidTestCompile 'org.hamcrest:hamcrest-core:1.1'
+    androidTestCompile 'org.hamcrest:hamcrest-library:1.1'
+    androidTestCompile 'org.hamcrest:hamcrest-integration:1.1'
+    androidTestApt 'com.squareup.dagger:dagger-compiler:1.2.2'
 
 //    // Espresso
 //    androidTestCompile('com.jakewharton.espresso:espresso:1.1-r3') {
@@ -124,6 +131,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-v4'
 //        exclude group: 'com.google.guava', module: 'guava'
         exclude group: 'com.squareup.dagger'
+        exclude group: 'org.hamcrest'
     }
 }
 

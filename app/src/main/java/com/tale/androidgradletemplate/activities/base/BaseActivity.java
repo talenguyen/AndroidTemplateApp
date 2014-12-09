@@ -86,7 +86,7 @@ public abstract class BaseActivity extends ActionBarActivity {
         if (modules == null) {
             modules = new ArrayList<>();
         }
-        modules.add(new ActivityModule());
+        modules.add(new ActivityModule(this));
         activityObjectGraph = application.getObjectGraph().plus(modules.toArray());
         activityObjectGraph.inject(this);
     }

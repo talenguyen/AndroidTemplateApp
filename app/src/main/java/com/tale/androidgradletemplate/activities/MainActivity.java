@@ -34,11 +34,14 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_sample_main;
     }
 
-    @Override public void onCreate(Bundle savedInstanceState) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (savedInstanceState == null) {
             final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.add(R.id.fragment_container, new MainFragment(), "MAIN").commit();
         }
     }
+
 }

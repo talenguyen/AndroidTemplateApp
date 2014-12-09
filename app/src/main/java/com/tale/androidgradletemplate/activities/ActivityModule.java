@@ -16,7 +16,10 @@
 
 package com.tale.androidgradletemplate.activities;
 
+import android.app.Activity;
+
 import dagger.Module;
+import dagger.Provides;
 
 /**
  * Created by TALE on 11/11/2014.
@@ -25,7 +28,19 @@ import dagger.Module;
         injects = {
                 MainActivity.class,
         },
-        complete = false
+        complete = false,
+        library = true
 )
 public class ActivityModule {
+
+    private final Activity activity;
+
+    public ActivityModule(Activity activity) {
+        this.activity = activity;
+    }
+
+    @Provides
+    public Activity provideActivity() {
+        return this.activity;
+    }
 }
