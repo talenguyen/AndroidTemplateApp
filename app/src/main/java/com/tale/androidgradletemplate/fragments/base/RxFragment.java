@@ -16,7 +16,10 @@
 
 package com.tale.androidgradletemplate.fragments.base;
 
+import rx.Observable;
+import rx.Scheduler;
 import rx.Subscription;
+import rx.android.observables.AndroidObservable;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -25,6 +28,7 @@ import rx.subscriptions.CompositeSubscription;
 public class RxFragment extends BaseFragment {
 
     private CompositeSubscription compositeSubscriptionOnPause;
+    private CompositeSubscription compositeSubscriptionOnDestroy;
 
     @Override
     public void onPause() {
@@ -51,8 +55,6 @@ public class RxFragment extends BaseFragment {
         compositeSubscriptionOnPause.add(subscription);
     }
 
-    private CompositeSubscription compositeSubscriptionOnDestroy;
-
     @Override
     public void onDestroy() {
         if (compositeSubscriptionOnDestroy != null) {
@@ -76,5 +78,9 @@ public class RxFragment extends BaseFragment {
             compositeSubscriptionOnDestroy = new CompositeSubscription();
         }
         compositeSubscriptionOnDestroy.add(subscription);
+    }
+
+    protected <T> Observable<T> bind(Observable<T> observable, Scheduler scheduler) {
+        return AndroidObservable.bindFragment(this, observable.subscribeOn(scheduler));
     }
 }
