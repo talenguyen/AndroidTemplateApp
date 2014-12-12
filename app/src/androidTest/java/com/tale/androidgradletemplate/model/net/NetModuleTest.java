@@ -1,11 +1,17 @@
 package com.tale.androidgradletemplate.model.net;
 
+import com.tale.androidgradletemplate.fragments.MainFragment;
+
 import dagger.Module;
 import dagger.Provides;
 
 @Module(
         overrides = true,
-        library = true
+        library = true,
+        complete = false,
+        injects = {
+                MainFragment.class
+        }
 )
 public class NetModuleTest {
     private final GitHubApi gitHubApi;

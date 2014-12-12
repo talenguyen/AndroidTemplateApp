@@ -5,12 +5,14 @@ buildscript {
     dependencies {
         classpath rootProject.ext.retroLambda
         classpath rootProject.ext.androidApt
+        classpath 'com.stanfy.spoon:spoon-gradle-plugin:0.14.1'
     }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'spoon'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -133,6 +135,7 @@ dependencies {
         exclude group: 'com.squareup.dagger'
         exclude group: 'org.hamcrest'
     }
+    androidTestCompile 'com.squareup.spoon:spoon-client:1.1.1'
 }
 
 apt {

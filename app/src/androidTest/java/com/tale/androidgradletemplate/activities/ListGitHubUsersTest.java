@@ -16,13 +16,12 @@
 
 package com.tale.androidgradletemplate.activities;
 
+import android.support.v4.app.Fragment;
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.squareup.spoon.Spoon;
 import com.tale.androidgradletemplate.R;
-import com.tale.androidgradletemplate.TempleApplication;
-import com.tale.androidgradletemplate.espresso.ExtViewMatcher;
 import com.tale.androidgradletemplate.model.net.GitHubApi;
-import com.tale.androidgradletemplate.model.net.NetModuleTest;
 import com.tale.androidgradletemplate.model.pojo.GitHubUser;
 
 import org.mockito.Mock;
@@ -34,9 +33,11 @@ import java.util.List;
 import rx.Observable;
 import rx.Subscriber;
 
-import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
+import static com.google.android.apps.common.testing.ui.espresso.Espresso.onData;
 import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
-import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withId;
+import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.isDisplayed;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 
 /**
@@ -46,6 +47,7 @@ public class ListGitHubUsersTest extends ActivityInstrumentationTestCase2<MainAc
 
     @Mock
     GitHubApi gitHubApi;
+    private MainActivity activity;
 
     public ListGitHubUsersTest() {
         super("com.tale.androidgradletemplate.activities", MainActivity.class);
@@ -56,8 +58,11 @@ public class ListGitHubUsersTest extends ActivityInstrumentationTestCase2<MainAc
         MockitoAnnotations.initMocks(this);
 
         when(gitHubApi.getUsers()).thenReturn(mockUsers(5));
-        MainActivity activity = getActivity();
-        TempleApplication.get(activity).getObjectGraph().plus(new NetModuleTest(gitHubApi));
+
+        activity = getActivity();
+//        final ObjectGraph objectGraph = activity.getActivityObjectGraph().plus(new NetModuleTest(gitHubApi), new ActivityModule(activity));
+        final Fragment fragment = activity.getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+//        objectGraph.inject(fragment);
     }
 
     private Observable<List<GitHubUser>> mockUsers(final int size) {
@@ -88,6 +93,10 @@ public class ListGitHubUsersTest extends ActivityInstrumentationTestCase2<MainAc
     }
 
     public void testRecyclerViewDisplayed() throws Exception {
-        onView(withId(R.id.rvUsers)).check(matches(ExtViewMatcher.withChildCount(5)));
+        Spoon.screenshot(activity, "Start_up");
+        onData(is(instanceOf(GitHubUser.class))).atPosition(0).check(matches(isDisplayed()));
+//        getInstrumentation().waitForIdleSync();
+//        onView(withId(R.id.rvUsers)).check(matches(ExtViewMatcher.withChildCount(5)));
+        Spoon.screenshot(activity, "After_check");
     }
 }
