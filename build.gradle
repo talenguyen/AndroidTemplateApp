@@ -21,7 +21,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.0-rc4'
+        classpath 'com.android.tools.build:gradle:1.0.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -35,7 +35,7 @@ allprojects {
 }
 
 ext {
-    androidPlugin = 'com.android.tools.build:gradle:1.0.0-rc4'
+    androidPlugin = 'com.android.tools.build:gradle:1.0.0'
     retroLambda = 'me.tatarka:gradle-retrolambda:2.4.1'
     // the latest version of the android-apt plugin
     androidApt = 'com.neenbedankt.gradle.plugins:android-apt:1.4'
