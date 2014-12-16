@@ -16,6 +16,7 @@
 
 package com.tale.androidgradletemplate.activities;
 
+import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 
 import com.tale.androidgradletemplate.R;
@@ -30,16 +31,19 @@ import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMat
  */
 public class ListGitHubUsersTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
+    private MainActivity activity;
     public ListGitHubUsersTest() {
         super("com.tale.androidgradletemplate.activities", MainActivity.class);
     }
 
     @Override protected void setUp() throws Exception {
         super.setUp();
-        getActivity();
+        activity = getActivity();
     }
 
     public void testRecyclerViewDisplayed() throws Exception {
+        Spoon.screenshot(activity, "Start_up");
         onView(withId(R.id.rvUsers)).check(matches(ExtViewMatcher.withChildCount(5)));
+        Spoon.screenshot(activity, "After_check");
     }
 }
