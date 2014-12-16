@@ -19,33 +19,16 @@ package com.tale.androidgradletemplate.activities;
 import android.test.ActivityInstrumentationTestCase2;
 
 import com.tale.androidgradletemplate.R;
-import com.tale.androidgradletemplate.TempleApplication;
 import com.tale.androidgradletemplate.espresso.ExtViewMatcher;
-import com.tale.androidgradletemplate.model.net.GitHubApi;
-import com.tale.androidgradletemplate.model.net.NetModuleTest;
-import com.tale.androidgradletemplate.model.pojo.GitHubUser;
-
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import rx.Observable;
-import rx.Subscriber;
 
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
 import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
 import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withId;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by TALE on 12/1/2014.
  */
 public class ListGitHubUsersTest extends ActivityInstrumentationTestCase2<MainActivity> {
-
-    @Mock
-    GitHubApi gitHubApi;
 
     public ListGitHubUsersTest() {
         super("com.tale.androidgradletemplate.activities", MainActivity.class);
@@ -53,38 +36,7 @@ public class ListGitHubUsersTest extends ActivityInstrumentationTestCase2<MainAc
 
     @Override protected void setUp() throws Exception {
         super.setUp();
-        MockitoAnnotations.initMocks(this);
-
-        when(gitHubApi.getUsers()).thenReturn(mockUsers(5));
-        MainActivity activity = getActivity();
-        TempleApplication.get(activity).getObjectGraph().plus(new NetModuleTest(gitHubApi));
-    }
-
-    private Observable<List<GitHubUser>> mockUsers(final int size) {
-        Observable<List<GitHubUser>> listObservable = Observable.create(new Observable.OnSubscribe<List<GitHubUser>>() {
-
-            @Override
-            public void call(Subscriber<? super List<GitHubUser>> subscriber) {
-                if (size <= 0) {
-                    if (!subscriber.isUnsubscribed()) {
-                        subscriber.onError(new IllegalArgumentException("Please check your param"));
-                    }
-                } else {
-                    List<GitHubUser> result = new ArrayList<>(size);
-                    for (int i = 0; i < size; i++) {
-                        GitHubUser user = new GitHubUser();
-                        user.avatar_url = "https://avatars.githubusercontent.com/u/1658142?v=3";
-                        user.login = "talenguyen " + i;
-                    }
-                    if (!subscriber.isUnsubscribed()) {
-                        subscriber.onNext(result);
-                        subscriber.onCompleted();
-                    }
-                }
-
-            }
-        });
-        return listObservable;
+        getActivity();
     }
 
     public void testRecyclerViewDisplayed() throws Exception {

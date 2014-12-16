@@ -18,6 +18,8 @@ package com.tale.androidgradletemplate.activities;
 
 import android.app.Activity;
 
+import com.tale.androidgradletemplate.fragments.FragmentModule;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -25,11 +27,15 @@ import dagger.Provides;
  * Created by TALE on 11/11/2014.
  */
 @Module(
+        includes = {
+                FragmentModule.class
+        },
         injects = {
                 MainActivity.class,
         },
         complete = false,
-        library = true
+        library = true,
+        overrides = true
 )
 public class ActivityModule {
 

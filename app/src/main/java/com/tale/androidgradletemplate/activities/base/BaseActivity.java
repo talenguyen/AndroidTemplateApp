@@ -25,9 +25,6 @@ import android.view.View;
 import com.tale.androidgradletemplate.TempleApplication;
 import com.tale.androidgradletemplate.activities.ActivityModule;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.ButterKnife;
 import dagger.ObjectGraph;
 
@@ -81,13 +78,7 @@ public abstract class BaseActivity extends ActionBarActivity {
 
     protected void injectDependencies() {
         final TempleApplication application = TempleApplication.get(this);
-
-        List<Object> modules = getModules();
-        if (modules == null) {
-            modules = new ArrayList<>();
-        }
-        modules.add(new ActivityModule(this));
-        activityObjectGraph = application.getObjectGraph().plus(modules.toArray());
+        activityObjectGraph = application.getObjectGraph().plus(new ActivityModule(this));
         activityObjectGraph.inject(this);
     }
 
@@ -97,10 +88,6 @@ public abstract class BaseActivity extends ActionBarActivity {
 
     protected void injectViews() {
         ButterKnife.inject(this);
-    }
-
-    protected List<Object> getModules() {
-        return null;
     }
 
     public Intent openActivityIntent(Class<? extends Activity> activityClass) {

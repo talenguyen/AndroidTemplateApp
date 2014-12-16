@@ -19,7 +19,7 @@ package com.tale.androidgradletemplate;
 import android.app.Application;
 import android.content.Context;
 
-import com.tale.androidgradletemplate.di.RootModule;
+import com.tale.androidgradletemplate.di.Modules;
 
 import dagger.ObjectGraph;
 import timber.log.Timber;
@@ -45,7 +45,7 @@ public class TempleApplication extends Application {
     }
 
     public void buildObjectGraphAndInject() {
-        objectGraph = ObjectGraph.create(new Object[]{new RootModule(this)});
+        objectGraph = ObjectGraph.create(Modules.list(this));
     }
 
     public ObjectGraph getObjectGraph() {

@@ -28,11 +28,7 @@ import android.view.ViewGroup;
 import com.tale.androidgradletemplate.R;
 import com.tale.androidgradletemplate.fragments.base.BaseFragment;
 import com.tale.androidgradletemplate.model.net.GitHubApi;
-import com.tale.androidgradletemplate.model.net.NetModule;
 import com.tale.androidgradletemplate.views.adapters.GitUserAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -71,12 +67,5 @@ public class MainFragment extends BaseFragment {
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((users) -> gitUserAdapter.changeDataSet(users));
-    }
-
-    @Override
-    protected List<Object> getModules() {
-        final List<Object> modules = new ArrayList<>();
-        modules.add(new NetModule());
-        return modules;
     }
 }
