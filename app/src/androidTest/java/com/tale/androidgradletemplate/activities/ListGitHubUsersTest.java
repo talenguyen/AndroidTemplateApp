@@ -16,9 +16,9 @@
 
 package com.tale.androidgradletemplate.activities;
 
-import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.squareup.spoon.Spoon;
 import com.tale.androidgradletemplate.R;
 import com.tale.androidgradletemplate.espresso.ExtViewMatcher;
 
@@ -32,6 +32,7 @@ import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMat
 public class ListGitHubUsersTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     private MainActivity activity;
+
     public ListGitHubUsersTest() {
         super("com.tale.androidgradletemplate.activities", MainActivity.class);
     }
