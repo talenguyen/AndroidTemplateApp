@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.tale.androidgradletemplate.R;
-import com.tale.androidgradletemplate.model.pojo.GitHubUser;
+import com.tale.androidgradletemplate.model.pojo.GitUser;
 
 import javax.inject.Inject;
 
@@ -19,7 +19,7 @@ import butterknife.InjectView;
 /**
  * Created by Giang on 12/9/2014.
  */
-public class GitUserAdapter extends RecyclerTypedAdapter<GitHubUser, GitUserAdapter.ViewHolder> {
+public class GitUserAdapter extends RecyclerTypedAdapter<GitUser, GitUserAdapter.ViewHolder> {
 
     @Inject
     Activity activity;
@@ -52,7 +52,7 @@ public class GitUserAdapter extends RecyclerTypedAdapter<GitHubUser, GitUserAdap
             ButterKnife.inject(this, itemView);
         }
 
-        public void bind(GitHubUser item) {
+        public void bind(GitUser item) {
             picasso.load(item.avatar_url).into(ivAvatar);
             tvLogin.setText(item.login);
         }

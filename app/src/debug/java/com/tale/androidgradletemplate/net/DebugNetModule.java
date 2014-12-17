@@ -1,7 +1,7 @@
 package com.tale.androidgradletemplate.net;
 
-import com.tale.androidgradletemplate.model.net.GitHubApi;
-import com.tale.androidgradletemplate.model.pojo.GitHubUser;
+import com.tale.androidgradletemplate.model.net.GitHubService;
+import com.tale.androidgradletemplate.model.pojo.GitUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +23,14 @@ public class DebugNetModule {
     private static final int MOCK_SIZE = 5;
 
     @Provides
-    public GitHubApi provideGitHubApi() {
-        return new GitHubApi() {
-            @Override public Observable<List<GitHubUser>> getUsers() {
-                Observable<List<GitHubUser>> listObservable = Observable.create(
-                        (Subscriber<? super List<GitHubUser>> subscriber) -> {
-                            List<GitHubUser> result = new ArrayList<>(MOCK_SIZE);
+    public GitHubService provideGitHubApi() {
+        return new GitHubService() {
+            @Override public Observable<List<GitUser>> getUsers() {
+                Observable<List<GitUser>> listObservable = Observable.create(
+                        (Subscriber<? super List<GitUser>> subscriber) -> {
+                            List<GitUser> result = new ArrayList<>(MOCK_SIZE);
                             for (int i = 0; i < MOCK_SIZE; i++) {
-                                GitHubUser user = new GitHubUser();
+                                GitUser user = new GitUser();
                                 user.avatar_url = "https://avatars.githubusercontent.com/u/1658142?v=3";
                                 user.login = "talenguyen " + i;
                                 result.add(user);

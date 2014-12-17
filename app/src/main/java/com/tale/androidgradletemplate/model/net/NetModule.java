@@ -13,11 +13,11 @@ import retrofit.RestAdapter;
 )
 public class NetModule {
 
-    @Provides public GitHubApi provideGithubApi() {
+    @Provides public GitHubService provideGithubApi() {
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint("https://api.github.com")
                 .build();
 
-        return restAdapter.create(GitHubApi.class);
+        return restAdapter.create(GitHubService.class);
     }
 }

@@ -29,11 +29,11 @@ import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMat
 /**
  * Created by TALE on 12/1/2014.
  */
-public class ListGitHubUsersTest extends ActivityInstrumentationTestCase2<MainActivity> {
+public class ListGitUsersTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     private MainActivity activity;
 
-    public ListGitHubUsersTest() {
+    public ListGitUsersTest() {
         super("com.tale.androidgradletemplate.activities", MainActivity.class);
     }
 
