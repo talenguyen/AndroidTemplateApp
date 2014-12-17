@@ -27,7 +27,7 @@ import android.view.ViewGroup;
 
 import com.tale.androidgradletemplate.R;
 import com.tale.androidgradletemplate.fragments.base.BaseFragment;
-import com.tale.androidgradletemplate.model.net.GitHubApi;
+import com.tale.androidgradletemplate.model.net.GitHubService;
 import com.tale.androidgradletemplate.views.adapters.GitUserAdapter;
 
 import javax.inject.Inject;
@@ -42,7 +42,7 @@ import rx.schedulers.Schedulers;
 public class MainFragment extends BaseFragment {
 
     @Inject
-    GitHubApi gitHubApi;
+    GitHubService gitHubService;
 
     @InjectView(R.id.rvUsers)
     RecyclerView rvUsers;
@@ -63,7 +63,7 @@ public class MainFragment extends BaseFragment {
         super.onInjected();
         rvUsers.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
         rvUsers.setAdapter(gitUserAdapter);
-        gitHubApi.getUsers()
+        gitHubService.getUsers()
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((users) -> gitUserAdapter.changeDataSet(users));

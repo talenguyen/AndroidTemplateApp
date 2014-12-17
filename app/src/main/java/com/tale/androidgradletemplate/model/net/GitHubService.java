@@ -10,7 +10,7 @@ import rx.Observable;
 /**
  * Created by tale on 12/9/14.
  */
-public interface GitHubApi {
+public interface GitHubService {
     @GET("/users")
     public Observable<List<GitHubUser>> getUsers();
 }

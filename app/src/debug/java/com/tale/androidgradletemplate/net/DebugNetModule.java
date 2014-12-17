@@ -1,6 +1,6 @@
 package com.tale.androidgradletemplate.net;
 
-import com.tale.androidgradletemplate.model.net.GitHubApi;
+import com.tale.androidgradletemplate.model.net.GitHubService;
 import com.tale.androidgradletemplate.model.pojo.GitHubUser;
 
 import java.util.ArrayList;
@@ -23,8 +23,8 @@ public class DebugNetModule {
     private static final int MOCK_SIZE = 5;
 
     @Provides
-    public GitHubApi provideGitHubApi() {
-        return new GitHubApi() {
+    public GitHubService provideGitHubApi() {
+        return new GitHubService() {
             @Override public Observable<List<GitHubUser>> getUsers() {
                 Observable<List<GitHubUser>> listObservable = Observable.create(
                         (Subscriber<? super List<GitHubUser>> subscriber) -> {
