@@ -19,6 +19,7 @@ package com.tale.androidgradletemplate;
 import android.app.Application;
 import android.content.Context;
 
+import com.tale.androidgradletemplate.compat.PlatformSpecificImplementationFactory;
 import com.tale.androidgradletemplate.di.Modules;
 
 import dagger.ObjectGraph;
@@ -36,6 +37,8 @@ public class TempleApplication extends Application {
 
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
+            // Enable strictMode for development. This will help to keep project in high quality.
+            PlatformSpecificImplementationFactory.getStrictMode().enableStrictMode();
         } else {
             Timber.plant(new CrashReportingTree());
         }
