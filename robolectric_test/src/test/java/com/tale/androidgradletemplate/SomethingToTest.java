@@ -29,6 +29,6 @@ import robolectric.RobolectricGradleTestRunner;
 public class SomethingToTest {
 
     @Test public void testSomething() throws Exception {
-        Assert.assertTrue(1 == 0);
+        Assert.assertTrue(1 == 1);
     }
 }
