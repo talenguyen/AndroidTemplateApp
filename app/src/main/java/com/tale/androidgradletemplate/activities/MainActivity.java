@@ -21,7 +21,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.tale.androidgradletemplate.R;
 import com.tale.androidgradletemplate.activities.base.BaseActivity;
-import com.tale.androidgradletemplate.fragments.MainFragment;
+import com.tale.androidgradletemplate.fragments.GitHubUserListFragment;
 
 
 /**
@@ -40,7 +40,7 @@ public class MainActivity extends BaseActivity {
 
         if (savedInstanceState == null) {
             final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.add(R.id.fragment_container, new MainFragment(), "MAIN").commit();
+            fragmentTransaction.add(R.id.fragment_container, new GitHubUserListFragment(), "MAIN").commit();
         }
     }
 

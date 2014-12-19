@@ -28,7 +28,11 @@ import android.view.ViewGroup;
 import com.tale.androidgradletemplate.R;
 import com.tale.androidgradletemplate.fragments.base.BaseFragment;
 import com.tale.androidgradletemplate.model.net.GitHubService;
+import com.tale.androidgradletemplate.model.pojo.GitUser;
+import com.tale.androidgradletemplate.module.userlist.GitHubUserListView;
 import com.tale.androidgradletemplate.views.adapters.GitUserAdapter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -39,7 +43,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by TALE on 11/11/2014.
  */
-public class MainFragment extends BaseFragment {
+public class GitHubUserListFragment extends BaseFragment implements GitHubUserListView {
 
     @Inject
     GitHubService gitHubService;
@@ -67,5 +71,17 @@ public class MainFragment extends BaseFragment {
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((users) -> gitUserAdapter.changeDataSet(users));
+    }
+
+    @Override public void renderUsers(List<GitUser> users) {
+
+    }
+
+    @Override public void showLoadingProgress() {
+
+    }
+
+    @Override public void hideLoadingProgress() {
+
     }
 }

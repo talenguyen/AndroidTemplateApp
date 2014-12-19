@@ -23,7 +23,7 @@ import dagger.Module;
  */
 @Module(
         injects = {
-                MainFragment.class
+                GitHubUserListFragment.class
         },
         complete = false
 )
