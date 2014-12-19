@@ -18,9 +18,12 @@ package com.tale.androidgradletemplate.activities;
 
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.google.android.apps.common.testing.ui.espresso.action.ViewActions;
 import com.squareup.spoon.Spoon;
 import com.tale.androidgradletemplate.R;
+import com.tale.androidgradletemplate.di.Modules;
 import com.tale.androidgradletemplate.espresso.ExtViewMatcher;
+import com.tale.androidgradletemplate.model.TestModelModule;
 
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
 import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
@@ -35,6 +38,7 @@ public class ListGitUsersTest extends ActivityInstrumentationTestCase2<MainActiv
 
     public ListGitUsersTest() {
         super("com.tale.androidgradletemplate.activities", MainActivity.class);
+        Modules.addExtra(new TestModelModule());
     }
 
     @Override protected void setUp() throws Exception {
@@ -43,8 +47,14 @@ public class ListGitUsersTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     public void testRecyclerViewDisplayed() throws Exception {
+        onView(withId(R.id.btRefresh)).perform(ViewActions.click());
         Spoon.screenshot(activity, "Start_up");
-        onView(withId(R.id.rvUsers)).check(matches(ExtViewMatcher.withChildCount(5)));
+        onView(withId(R.id.rvUsers)).check(matches(ExtViewMatcher.withChildCount(TestModelModule.MOCK_SIZE)));
         Spoon.screenshot(activity, "After_check");
+    }
+
+    @Override public void tearDown() throws Exception {
+        super.tearDown();
+        Modules.clearExtra();
     }
 }

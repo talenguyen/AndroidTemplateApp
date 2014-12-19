@@ -1,5 +1,7 @@
 package com.tale.androidgradletemplate.rx;
 
+import javax.inject.Inject;
+
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
@@ -9,6 +11,9 @@ import rx.subscriptions.CompositeSubscription;
 public class RxSafer {
 
     private CompositeSubscription compositeSubscription = new CompositeSubscription();
+
+    @Inject public RxSafer() {
+    }
 
     /**
      * Add subscription to list then can un-subscribe in single shot later.

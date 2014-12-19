@@ -26,7 +26,7 @@ import timber.log.Timber;
 )
 public class NetworkModule {
 
-    static final int DISK_CACHE_SIZE = 50 * 1024 * 1024; // 50MB
+    static final int DISK_CACHE_SIZE = 25 * 1024 * 1024; // 25MB
 
     @Provides
     @Singleton OkHttpClient provideOkHttpClient(Application app) {
@@ -36,12 +36,14 @@ public class NetworkModule {
     @Provides
     @Singleton Picasso providePicasso(Application app, OkHttpClient client) {
         return new Picasso.Builder(app).downloader(new OkHttpDownloader(client))
-                .listener(new Picasso.Listener() {
-                    @Override
-                    public void onImageLoadFailed(Picasso picasso, Uri uri, Exception e) {
-                        Timber.e(e, "Failed to load image: %s", uri);
-                    }
-                })
+                .listener(
+                        new Picasso.Listener() {
+                            @Override
+                            public void onImageLoadFailed(Picasso picasso, Uri uri, Exception e) {
+                                Timber.e(e, "Failed to load image: %s", uri);
+                            }
+                        }
+                )
                 .build();
     }
 
@@ -50,7 +52,7 @@ public class NetworkModule {
 
         // Install an HTTP cache in the application cache directory.
         try {
-            File cacheDir = new File(app.getCacheDir(), "http");
+            File cacheDir = new File(app.getExternalCacheDir(), "http");
             Cache cache = new Cache(cacheDir, DISK_CACHE_SIZE);
             client.setCache(cache);
         } catch (IOException e) {

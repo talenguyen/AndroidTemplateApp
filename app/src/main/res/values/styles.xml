@@ -16,9 +16,33 @@
 
 <resources>
 
+    <style name="AppTheme"
+           parent="AppTheme.Base"/>
+
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme.Base"
+           parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
     </style>
+
+    <style name="TextLarge">
+        <item name="android:textSize">@dimen/font_large</item>
+    </style>
+
+    <style name="TextLarger">
+        <item name="android:textSize">@dimen/font_larger</item>
+    </style>
+
+    <style name="TextNormal">
+        <item name="android:textSize">@dimen/font_normal</item>
+    </style>
+
+    <style name="TextSmall">
+        <item name="android:textSize">@dimen/font_small</item>
+    </style>
+
 
 </resources>

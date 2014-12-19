@@ -16,7 +16,6 @@
 
 package com.tale.androidgradletemplate.fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,11 +24,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.tale.androidgradletemplate.R;
-import com.tale.androidgradletemplate.fragments.base.BaseFragment;
-import com.tale.androidgradletemplate.model.net.GitHubService;
+import com.tale.androidgradletemplate.fragments.base.RxFragment;
 import com.tale.androidgradletemplate.model.pojo.GitUser;
+import com.tale.androidgradletemplate.module.userlist.GitHubUserListModel;
+import com.tale.androidgradletemplate.module.userlist.GitHubUserListPresenter;
 import com.tale.androidgradletemplate.module.userlist.GitHubUserListView;
+import com.tale.androidgradletemplate.rx.RxSafer;
 import com.tale.androidgradletemplate.views.adapters.GitUserAdapter;
 
 import java.util.List;
@@ -37,51 +39,67 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.InjectView;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import butterknife.OnClick;
 
 /**
  * Created by TALE on 11/11/2014.
  */
-public class GitHubUserListFragment extends BaseFragment implements GitHubUserListView {
+public class GitHubUserListFragment extends RxFragment implements GitHubUserListView {
 
-    @Inject
-    GitHubService gitHubService;
+    @InjectView(R.id.rvUsers) RecyclerView rvUsers;
 
-    @InjectView(R.id.rvUsers)
-    RecyclerView rvUsers;
+    @Inject GitUserAdapter gitUserAdapter;
+    @Inject RxSafer rxSafer;
+    @Inject GitHubUserListModel model;
 
-    @Inject
-    Activity activity;
-
-    @Inject
-    GitUserAdapter gitUserAdapter;
+    private GitHubUserListPresenter presenter;
+    private MaterialDialog loadingProgressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_sample, container, false);
     }
 
-    @Override
-    protected void onInjected() {
+    @Override protected void onInjected() {
         super.onInjected();
-        rvUsers.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
+        presenter = new GitHubUserListPresenter(model, this, this, rxSafer);
+        rvUsers.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         rvUsers.setAdapter(gitUserAdapter);
-        gitHubService.getUsers()
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((users) -> gitUserAdapter.changeDataSet(users));
+
+    }
+
+    @OnClick(R.id.btRefresh) public void refresh() {
+        presenter.onStart();
+    }
+
+    @Override public void onStart() {
+        super.onStart();
+
+    }
+
+    @Override public void onStop() {
+        super.onStop();
+        presenter.onStop();
     }
 
     @Override public void renderUsers(List<GitUser> users) {
-
+        gitUserAdapter.changeDataSet(users);
     }
 
     @Override public void showLoadingProgress() {
-
+//        if (loadingProgressDialog == null) {
+//            loadingProgressDialog = new MaterialDialog.Builder(getActivity()).customView(R.layout.dialog_progress).build();
+//        }
+//        if (!loadingProgressDialog.isShowing()) {
+//            loadingProgressDialog.show();
+//        }
     }
 
     @Override public void hideLoadingProgress() {
-
+        if (loadingProgressDialog != null) {
+            loadingProgressDialog.dismiss();
+            loadingProgressDialog = null;
+        }
     }
+
 }

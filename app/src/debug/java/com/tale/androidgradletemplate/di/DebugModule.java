@@ -1,6 +1,6 @@
 package com.tale.androidgradletemplate.di;
 
-import com.tale.androidgradletemplate.net.DebugNetModule;
+import com.tale.androidgradletemplate.model.DebugModelModule;
 
 import dagger.Module;
 
@@ -10,7 +10,7 @@ import dagger.Module;
 @Module(
         addsTo = RootModule.class,
         includes = {
-                DebugNetModule.class,
+                DebugModelModule.class,
         },
         overrides = true
 )

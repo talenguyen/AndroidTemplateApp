@@ -7,8 +7,6 @@ import com.tale.androidgradletemplate.rx.RxSafer;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import rx.Observer;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
@@ -23,7 +21,7 @@ public class GitHubUserListPresenter implements IPresenter {
     private final RxBinder rxBinder;
     private final RxSafer rxSafer;
 
-    @Inject public GitHubUserListPresenter(GitHubUserListModel model, GitHubUserListView view, RxBinder rxBinder, RxSafer rxSafer) {
+    public GitHubUserListPresenter(GitHubUserListModel model, GitHubUserListView view, RxBinder rxBinder, RxSafer rxSafer) {
         this.model = model;
         this.view = view;
         this.rxBinder = rxBinder;

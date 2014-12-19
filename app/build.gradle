@@ -92,9 +92,6 @@ dependencies {
     compile 'com.squareup.dagger:dagger:1.2.2'
     apt 'com.squareup.dagger:dagger-compiler:1.2.2'
 
-    compile 'com.hannesdorfmann.fragmentargs:annotation:1.0.3'
-    apt 'com.hannesdorfmann.fragmentargs:processor:1.0.3'
-
     // View Inject dependencies
     compile 'com.jakewharton:butterknife:6.0.+'
 
@@ -103,20 +100,27 @@ dependencies {
 
     // Log
     compile 'com.jakewharton.timber:timber:2.2.+'
-    // ImageLoader
-    compile 'com.squareup.picasso:picasso:2.3.2'
 
-    // For REST
-    compile 'com.google.code.gson:gson:2.2.3'
-    compile 'com.squareup.retrofit:retrofit:1.6.1'
+    // Http
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
     compile 'com.squareup.okhttp:okhttp:2.0.0'
+    compile 'com.squareup.okio:okio:1.0.1'
+
+    // ImageLoader
+    compile 'com.squareup.picasso:picasso:2.4.0'
+
+    // For REST
+    compile 'com.squareup.retrofit:retrofit:1.6.1'
+    compile 'com.google.code.gson:gson:2.2.3'
 
     // Event bus
     compile 'de.greenrobot:eventbus:2.4.0'
 
     // RxAndroid
     compile 'io.reactivex:rxandroid:0.22.0'
+
+    // Dialog
+    compile 'com.afollestad:material-dialogs:0.4.6'
 
     ///////////////////////////////////////////////////////////////
     // TESTING

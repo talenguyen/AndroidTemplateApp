@@ -18,7 +18,7 @@ package com.tale.androidgradletemplate.di;
 
 import android.app.Application;
 
-import com.tale.androidgradletemplate.model.net.NetModule;
+import com.tale.androidgradletemplate.model.ModelModule;
 
 import javax.inject.Singleton;
 
@@ -34,7 +34,7 @@ import dagger.Provides;
                 ManagerModule.class,
                 AndroidModule.class,
                 NetworkModule.class,
-                NetModule.class
+                ModelModule.class
         })
 public final class RootModule {
     private final Application app;

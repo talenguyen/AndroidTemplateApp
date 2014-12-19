@@ -29,5 +29,7 @@
     <color name="blue">#2A91BD</color>
     <color name="orange">#FF9D2F</color>
     <color name="red">#FF432F</color>
+    <color name="colorPrimary">#ff009688</color>
+
 
 </resources>
