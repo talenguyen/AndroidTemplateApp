@@ -50,7 +50,7 @@ public class NetworkModule {
 
         // Install an HTTP cache in the application cache directory.
         try {
-            File cacheDir = new File(app.getCacheDir(), "http");
+            File cacheDir = new File(app.getExternalCacheDir(), "http");
             Cache cache = new Cache(cacheDir, DISK_CACHE_SIZE);
             client.setCache(cache);
         } catch (IOException e) {

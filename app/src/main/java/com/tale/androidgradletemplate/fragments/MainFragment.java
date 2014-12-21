@@ -17,7 +17,9 @@
 package com.tale.androidgradletemplate.fragments;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,13 +30,17 @@ import android.view.ViewGroup;
 import com.tale.androidgradletemplate.R;
 import com.tale.androidgradletemplate.fragments.base.BaseFragment;
 import com.tale.androidgradletemplate.model.net.GitHubService;
+import com.tale.androidgradletemplate.model.pojo.GitUser;
 import com.tale.androidgradletemplate.views.adapters.GitUserAdapter;
+import com.tale.prettytask.Action;
+import com.tale.prettytask.OnResult;
+import com.tale.prettytask.PrettyTask;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.InjectView;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by TALE on 11/11/2014.
@@ -52,6 +58,7 @@ public class MainFragment extends BaseFragment {
 
     @Inject
     GitUserAdapter gitUserAdapter;
+    private AsyncTask<Object, Void, Object> task;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,9 +70,23 @@ public class MainFragment extends BaseFragment {
         super.onInjected();
         rvUsers.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
         rvUsers.setAdapter(gitUserAdapter);
-        gitHubService.getUsers()
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((users) -> gitUserAdapter.changeDataSet(users));
+        task = PrettyTask.create(new Action<List<GitUser>>() {
+            @Override public List<GitUser> call() {
+                SystemClock.sleep(1000);
+                return gitHubService.getUsers();
+            }
+        }).onResult(new OnResult<List<GitUser>>() {
+            @Override public void onSucceed(List<GitUser> gitUsers) {
+                gitUserAdapter.changeDataSet(gitUsers);
+            }
+
+            @Override public void onError(Throwable throwable) {
+
+            }
+
+            @Override public void onCompleted() {
+
+            }
+        }).execute();
     }
 }
