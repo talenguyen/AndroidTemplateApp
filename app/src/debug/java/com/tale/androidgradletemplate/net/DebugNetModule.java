@@ -1,5 +1,7 @@
 package com.tale.androidgradletemplate.net;
 
+import android.os.SystemClock;
+
 import com.tale.androidgradletemplate.model.net.GitHubService;
 import com.tale.androidgradletemplate.model.pojo.GitUser;
 
@@ -28,6 +30,7 @@ public class DebugNetModule {
             @Override public Observable<List<GitUser>> getUsers() {
                 Observable<List<GitUser>> listObservable = Observable.create(
                         (Subscriber<? super List<GitUser>> subscriber) -> {
+                            SystemClock.sleep(3000);
                             List<GitUser> result = new ArrayList<>(MOCK_SIZE);
                             for (int i = 0; i < MOCK_SIZE; i++) {
                                 GitUser user = new GitUser();

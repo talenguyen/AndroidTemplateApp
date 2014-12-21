@@ -18,12 +18,16 @@ package com.tale.androidgradletemplate.activities;
 
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers;
 import com.squareup.spoon.Spoon;
 import com.tale.androidgradletemplate.R;
 import com.tale.androidgradletemplate.espresso.ExtViewMatcher;
+import com.tale.androidgradletemplate.util.ViewActions;
 
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
 import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
+import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.isRoot;
+import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withId;
 
 /**
@@ -44,6 +48,8 @@ public class ListGitUsersTest extends ActivityInstrumentationTestCase2<MainActiv
 
     public void testRecyclerViewDisplayed() throws Exception {
         Spoon.screenshot(activity, "Start_up");
+        onView(isRoot()).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+        onView(isRoot()).perform(ViewActions.waitAtLeast(4000));
         onView(withId(R.id.rvUsers)).check(matches(ExtViewMatcher.withChildCount(5)));
         Spoon.screenshot(activity, "After_check");
     }
