@@ -72,7 +72,7 @@ public class MainFragment extends BaseFragment {
         rvUsers.setAdapter(gitUserAdapter);
         task = PrettyTask.create(new Action<List<GitUser>>() {
             @Override public List<GitUser> call() {
-                SystemClock.sleep(1000);
+                SystemClock.sleep(5000);
                 return gitHubService.getUsers();
             }
         }).onResult(new OnResult<List<GitUser>>() {
