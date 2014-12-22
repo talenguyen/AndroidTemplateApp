@@ -1,7 +1,9 @@
 package com.tale.androidgradletemplate.model;
 
-import com.tale.androidgradletemplate.model.net.GitHubService;
-import com.tale.androidgradletemplate.model.pojo.GitUser;
+import android.os.SystemClock;
+
+import com.tale.androidgradletemplate.data.GitUser;
+import com.tale.androidgradletemplate.data.net.GitHubService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,7 @@ public class DebugModelModule {
     }
 
     private List<GitUser> getMockUsers(int size) {
+        SystemClock.sleep(3000);
         List<GitUser> result = new ArrayList<GitUser>(size);
         for (int i = 0; i < size; i++) {
             GitUser user = new GitUser();

@@ -2,17 +2,18 @@ package com.tale.androidgradletemplate.module.userlist;
 
 import android.test.ActivityInstrumentationTestCase2;
 
-import com.google.android.apps.common.testing.ui.espresso.action.ViewActions;
-import com.google.android.apps.common.testing.ui.espresso.contrib.CountingIdlingResource;
-import com.squareup.spoon.Spoon;
 import com.tale.androidgradletemplate.R;
-import com.tale.androidgradletemplate.activities.MainActivity;
-import com.tale.androidgradletemplate.di.Modules;
+import com.tale.androidgradletemplate.espresso.ExtViewActions;
 import com.tale.androidgradletemplate.espresso.ExtViewMatcher;
+import com.tale.androidgradletemplate.espresso.SpoonUtil;
+import com.tale.androidgradletemplate.ui.MainActivity;
 
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
 import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
+import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.isDisplayed;
+import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.isRoot;
 import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withId;
+import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withText;
 
 /**
  * Created by TALE on 12/19/2014.
@@ -20,41 +21,25 @@ import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMat
 public class GitHubUserListTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     private MainActivity activity;
-    private CountingIdlingResourceGitHubService countingIdlingResourceGitHubService;
-    private UserListModule extraModule;
-    private CountingIdlingResource countingIdlingResource;
 
     public GitHubUserListTest() {
         super("com.tale.androidgradletemplate.activities", MainActivity.class);
-//        countingIdlingResource = new CountingIdlingResource("GitHubUserListTest");
-//        countingIdlingResourceGitHubService = new CountingIdlingResourceGitHubService(countingIdlingResource);
-//        extraModule = new UserListModule(countingIdlingResourceGitHubService);
-//        Modules.addExtra(extraModule);
     }
 
     @Override public void setUp() throws Exception {
         super.setUp();
         activity = getActivity();
-//        registerIdlingResources(countingIdlingResource);
     }
 
     public void testOnStart_ShowLoadingThenRenderUserListThenHideLoading() throws Exception {
-        Spoon.screenshot(activity, "Before_check");
-        onView(withId(R.id.btRefresh)).perform(ViewActions.click());
-//        // Check show loading.
-//        Spoon.screenshot(activity, "check_show_loading");
-//        Espresso.onView(ViewMatchers.withText(R.string.loading)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-//        // Check hide loading.
-//        Spoon.screenshot(activity, "check_hide_loading");
-//        Espresso.onView(ViewMatchers.withText(R.string.loading)).check(ViewAssertions.matches(Matchers.not(ViewMatchers.isDisplayed())));
-//        // Check user list is displayed.
-//        Spoon.screenshot(activity, "check_display_user_list");
-        onView(withId(R.id.rvUsers)).check(matches(ExtViewMatcher.withChildCount(7)));
-        Spoon.screenshot(activity, "After_check");
+//        onView(withId(R.id.btRefresh)).perform(ViewActions.click());
+        String tag = "1. Root view visible, progress showing";
+        onView(withText(R.string.loading)).check(matches(isDisplayed()));
+        SpoonUtil.screenShot(activity, tag);
+        tag = "2. RecyclerView is shown with mock up data loaded.";
+        onView(isRoot()).perform(ExtViewActions.waitAtLeast(3000));
+        onView(withId(R.id.rvUsers)).check(matches(ExtViewMatcher.withChildCount(5)));
+        SpoonUtil.screenShot(activity, tag);
     }
 
-    @Override public void tearDown() throws Exception {
-        super.tearDown();
-        Modules.clearExtra();
-    }
 }
