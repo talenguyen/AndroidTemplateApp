@@ -18,7 +18,7 @@ package com.tale.androidgradletemplate.di;
 
 import android.app.Application;
 
-import com.tale.androidgradletemplate.model.ModelModule;
+import com.tale.androidgradletemplate.data.model.ModelModule;
 
 import javax.inject.Singleton;
 

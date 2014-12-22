@@ -18,7 +18,7 @@
           package="com.tale.androidgradletemplate"
     >
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".TempleApplication"
@@ -28,7 +28,7 @@
         android:theme="@style/AppTheme"
         >
 
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

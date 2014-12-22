@@ -19,7 +19,7 @@ package com.tale.androidgradletemplate.di;
 import android.app.Application;
 import android.content.SharedPreferences;
 
-import com.tale.androidgradletemplate.prefs.AppPref;
+import com.tale.androidgradletemplate.data.prefs.AppPref;
 import com.tale.androidgradletemplate.utils.Toasts;
 
 import javax.inject.Singleton;

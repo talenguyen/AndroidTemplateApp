@@ -1,9 +1,11 @@
 package com.tale.androidgradletemplate.module.userlist;
 
-import com.tale.androidgradletemplate.model.pojo.GitUser;
+import com.tale.androidgradletemplate.data.GitUser;
 import com.tale.androidgradletemplate.rx.ObservableHelper;
 import com.tale.androidgradletemplate.rx.RxBinder;
 import com.tale.androidgradletemplate.rx.RxSafer;
+import com.tale.androidgradletemplate.ui.userlist.GitHubUserListModel;
+import com.tale.androidgradletemplate.ui.userlist.GitHubUserListPresenter;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +35,7 @@ import static org.mockito.Mockito.when;
 public class GitHubUserListPresenterTest {
 
     @Mock GitHubUserListModel model;
-    @Mock GitHubUserListView view;
+    @Mock com.tale.androidgradletemplate.ui.userlist.GitHubUserListView view;
     @Mock RxSafer rxSafer;
     @Spy RxBinder rxBinder = new RxBinder() {
         @Override public <T> Observable<T> bind(Observable<T> observable, Scheduler scheduler) {
@@ -41,7 +43,7 @@ public class GitHubUserListPresenterTest {
         }
     };
 
-    GitHubUserListPresenter presenter;
+    com.tale.androidgradletemplate.ui.userlist.GitHubUserListPresenter presenter;
 
     private static Observable<List<GitUser>> createMockUsersObservable(final List<GitUser> mockUsers) {
         return Observable.create(

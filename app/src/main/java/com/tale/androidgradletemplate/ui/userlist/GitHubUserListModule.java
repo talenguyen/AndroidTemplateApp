@@ -1,0 +1,55 @@
+/*
+ * Copyright (c) 2014 Giang Nguyen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.tale.androidgradletemplate.ui.userlist;
+
+import android.app.Activity;
+
+import com.tale.androidgradletemplate.rx.RxBinder;
+
+import dagger.Module;
+import dagger.Provides;
+
+/**
+ * Created by TALE on 11/11/2014.
+ */
+@Module(
+        injects = {
+                GitHubUserListFragment.class,
+                GitHubUserListPresenter.class
+        },
+        complete = false,
+        library = true
+)
+public class GitHubUserListModule {
+    private final GitHubUserListFragment gitHubUserListFragment;
+
+    public GitHubUserListModule(GitHubUserListFragment gitHubUserListFragment) {
+        this.gitHubUserListFragment = gitHubUserListFragment;
+    }
+
+    @Provides public Activity provideActivity() {
+        return gitHubUserListFragment.getActivity();
+    }
+
+    @Provides public GitHubUserListView provideGitHubUserListView() {
+        return gitHubUserListFragment;
+    }
+
+    @Provides public RxBinder provideRxBinder() {
+        return gitHubUserListFragment;
+    }
+}
