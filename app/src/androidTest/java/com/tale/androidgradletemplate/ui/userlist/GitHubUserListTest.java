@@ -8,12 +8,12 @@ import com.tale.androidgradletemplate.espresso.ExtViewMatcher;
 import com.tale.androidgradletemplate.espresso.SpoonUtil;
 import com.tale.androidgradletemplate.ui.MainActivity;
 
-import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
-import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
-import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.isDisplayed;
-import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.isRoot;
-import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withId;
-import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withText;
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
  * Created by TALE on 12/19/2014.
@@ -23,7 +23,7 @@ public class GitHubUserListTest extends ActivityInstrumentationTestCase2<MainAct
     private MainActivity activity;
 
     public GitHubUserListTest() {
-        super("com.tale.androidgradletemplate.ui", MainActivity.class);
+        super(MainActivity.class);
     }
 
     @Override public void setUp() throws Exception {
@@ -32,7 +32,6 @@ public class GitHubUserListTest extends ActivityInstrumentationTestCase2<MainAct
     }
 
     public void testOnStart_ShowLoadingThenRenderUserListThenHideLoading() throws Exception {
-//        onView(withId(R.id.btRefresh)).perform(ViewActions.click());
         String tag = "1. Root view visible, progress showing";
         onView(withText(R.string.loading)).check(matches(isDisplayed()));
         SpoonUtil.screenShot(activity, tag);
