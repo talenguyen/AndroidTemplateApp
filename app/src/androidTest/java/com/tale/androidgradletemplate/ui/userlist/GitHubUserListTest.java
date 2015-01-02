@@ -1,4 +1,4 @@
-package com.tale.androidgradletemplate.module.userlist;
+package com.tale.androidgradletemplate.ui.userlist;
 
 import android.test.ActivityInstrumentationTestCase2;
 
@@ -23,7 +23,7 @@ public class GitHubUserListTest extends ActivityInstrumentationTestCase2<MainAct
     private MainActivity activity;
 
     public GitHubUserListTest() {
-        super("com.tale.androidgradletemplate.activities", MainActivity.class);
+        super("com.tale.androidgradletemplate.ui", MainActivity.class);
     }
 
     @Override public void setUp() throws Exception {
