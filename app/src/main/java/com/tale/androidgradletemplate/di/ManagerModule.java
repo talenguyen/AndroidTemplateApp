@@ -19,6 +19,8 @@ package com.tale.androidgradletemplate.di;
 import android.app.Application;
 import android.content.SharedPreferences;
 
+import com.squareup.otto.Bus;
+import com.squareup.otto.ThreadEnforcer;
 import com.tale.androidgradletemplate.prefs.AppPref;
 import com.tale.androidgradletemplate.utils.Toasts;
 
@@ -26,7 +28,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import de.greenrobot.event.EventBus;
 
 /**
  * Provide controller dependencies here. Ex. Bus, Toast...
@@ -45,7 +46,7 @@ public class ManagerModule {
         return new Toasts(app);
     }
 
-    @Provides @Singleton EventBus provideBus() {
-        return EventBus.getDefault();
+    @Provides @Singleton Bus provideBus() {
+        return new Bus(ThreadEnforcer.MAIN);
     }
 }

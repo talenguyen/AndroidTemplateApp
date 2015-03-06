@@ -14,38 +14,39 @@
  * limitations under the License.
  */
 
-package com.tale.androidgradletemplate.di;
+package com.tale.androidgradletemplate.ui.activities;
 
-import android.app.Application;
+import android.app.Activity;
 
-import com.tale.androidapptemplate.data.model.net.NetModule;
-
-import javax.inject.Singleton;
+import com.tale.androidgradletemplate.ui.fragments.FragmentModule;
 
 import dagger.Module;
 import dagger.Provides;
 
 /**
- * Created by tale on 11/6/14.
+ * Created by TALE on 11/11/2014.
  */
 @Module(
-        library = true,
         includes = {
-                ManagerModule.class,
-                AndroidModule.class,
-                NetworkModule.class,
-                NetModule.class
-        })
-public final class RootModule {
-    private final Application app;
+                FragmentModule.class
+        },
+        injects = {
+                MainActivity.class,
+        },
+        complete = false,
+        library = true,
+        overrides = true
+)
+public class ActivityModule {
 
-    public RootModule(Application app) {
-        this.app = app;
+    private final Activity activity;
+
+    public ActivityModule(Activity activity) {
+        this.activity = activity;
     }
 
     @Provides
-    @Singleton Application provideApplication() {
-        return app;
+    public Activity provideActivity() {
+        return this.activity;
     }
-
 }

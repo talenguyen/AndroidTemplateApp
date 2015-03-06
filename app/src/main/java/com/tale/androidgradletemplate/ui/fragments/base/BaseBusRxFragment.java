@@ -14,6 +14,33 @@
  * limitations under the License.
  */
 
+package com.tale.androidgradletemplate.ui.fragments.base;
 
+import com.squareup.otto.Bus;
 
-include ':app', ':data'
+import javax.inject.Inject;
+
+/**
+ * Created by TALE on 11/11/2014.
+ */
+public class BaseBusRxFragment extends RxFragment {
+
+    @Inject
+    protected Bus bus;
+
+    private boolean isBusEventRegistered;
+
+    protected void registerForBusEvent() {
+        bus.register(this);
+        isBusEventRegistered = true;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (isBusEventRegistered) {
+            bus.unregister(this);
+        }
+    }
+
+}

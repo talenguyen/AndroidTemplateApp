@@ -14,6 +14,18 @@
  * limitations under the License.
  */
 
+package com.tale.androidgradletemplate.ui.fragments;
 
+import dagger.Module;
 
-include ':app', ':data'
+/**
+ * Created by TALE on 11/11/2014.
+ */
+@Module(
+        injects = {
+                MainFragment.class
+        },
+        complete = false
+)
+public class FragmentModule {
+}

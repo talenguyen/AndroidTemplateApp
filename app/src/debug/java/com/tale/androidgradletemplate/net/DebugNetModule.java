@@ -2,8 +2,8 @@ package com.tale.androidgradletemplate.net;
 
 import android.os.SystemClock;
 
-import com.tale.androidgradletemplate.model.net.GitHubService;
-import com.tale.androidgradletemplate.model.pojo.GitUser;
+import com.tale.androidapptemplate.data.model.net.GitHubService;
+import com.tale.androidapptemplate.data.model.pojo.GitUser;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.tale.androidgradletemplate.R;
-import com.tale.androidgradletemplate.model.pojo.GitUser;
+import com.tale.androidapptemplate.data.model.pojo.GitUser;
 
 import javax.inject.Inject;
 
